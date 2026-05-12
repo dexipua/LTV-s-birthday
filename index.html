@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>З Днем Народження! ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #fdfbfb;
+            --secondary-bg: #ebedee;
+            --card-front: #ffffff;
+            --card-back: #fffcf7;
+            --accent: #b8860b; /* Темне золото для кращої читаємості */
+            --soft-gold: #d4af37;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #ffffff 0%, #e2e2e2 100%);
+            overflow: hidden;
+        }
+
+        /* Контейнер з перспективою */
+        .scene {
+            width: 90vw;
+            max-width: 650px;
+            height: 450px;
+            perspective: 2000px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 8px solid white;
+            outline: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Передня сторона --- */
+        .card-face--front {
+            background: var(--card-front);
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+
+        .envelope-decor {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            border: 1px solid var(--soft-gold);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .envelope-title {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent);
+            font-size: clamp(2.5rem, 8vw, 3.8rem);
+            margin: 0;
+            text-align: center;
+        }
+
+        .envelope-p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .open-hint {
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: var(--soft-gold);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- Зворотня сторона --- */
+        .card-face--back {
+            background: var(--card-back);
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            transform: rotateY(180deg);
+            padding: 40px;
+            display: block; /* Для прокрутки тексту */
+            overflow-y: auto;
+        }
+
+        .greeting-header {
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .greeting-content {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            text-align: justify;
+            white-space: pre-line;
+        }
+
+        .signature {
+            margin-top: 25px;
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        /* Scrollbar styling for the back */
+        .card-face--back::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .card-face--back::-webkit-scrollbar-thumb {
+            background: var(--soft-gold);
+            border-radius: 10px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .scene {
+                height: 80vh;
+            }
+
+            .card-face--back {
+                padding: 25px;
+            }
+
+            .greeting-content {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scene">
+    <div class="card" id="card">
+        <!-- FRONT -->
+        <div class="card-face card-face--front">
+            <div class="envelope-decor"></div>
+            <h1 class="envelope-title">Для Тетяни Валеріївни</h1>
+            <p class="envelope-p">Від М.А.К.</p>
+            <div class="open-hint">Натисніть, щоб відкрити ✨</div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-face card-face--back">
+            <h2 class="greeting-header">З Днем Народження!</h2>
+            <div class="greeting-content">
+                Доброго ранку! Хух, навіть не знаю з чого почати… Ну все ж з привітання!
+
+                Вітаю Вас з днем народження! Бажаю міцного здоровʼя, побільше щастя та позитиву в житті, аби все
+                максимально складалося як хочеться та не було причин для смутку! Бажаю залишатися такою ж доброю! Аби
+                вік був лишень цифрою та не більше!
+
+                Бажаю натхнення та успіхів у реалізації усіх планів! Аби робота була легшою, приносила тільки
+                задоволення та бажання продовжувати! Бажаю, щоб життя радувало приємними сюрпризами й кожен день минав
+                чудово!
+
+                Ну і звісно — мирного українського неба над головою!
+
+                Тепер хочу подякувати Вам за всю підтримку та допомогу! Я справді вдячний за все, що Ви робите для мене.
+                Що Ви, незважаючи на все, завжди готові вислухати та порадити. Для мене це справді дуже важливо!
+
+                Ну і наостанок, хочу Вас попросити скинути мені Ваш номер картки, аби я міг зробити невеликий подарунок
+                від себе!
+
+                Ще раз вітаю Вас зі святом! Усього найкращого!
+            </div>
+            <div class="signature">Ваш М.А.К.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const card = document.getElementById('card');
+    card.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+    });
+</script>
+
+</body>
+</html>
